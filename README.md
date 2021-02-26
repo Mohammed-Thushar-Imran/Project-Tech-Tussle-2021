@@ -1,4 +1,4 @@
-1. Attendance management system using facial recognition
+1. Attendance management system using highly sophisticated facial recognition
 
 The prime objective of this project is to develop such an attendance system where the attendants attendance will be marked automatically when they turn their camera on during a live meeting. Their identity will be stored in an excel sheet in an arranged manner without any manual intervention.
 
@@ -63,7 +63,7 @@ We define a new function called 'faceEncodings' in order to find the encodings o
                  
 5. Initialize live capturing screen or webcam
 
-We can either initialize the capturing screen mode or webcam frontal view based on our preferance. We can initialize both by employing 2 webcams in our device as well. For this particular project, capturing screen mode is the suitable one. To grab frames from the live screen, we develop a video capturing object in the beginning in case of webcam frontal view operation, and import ImageGrab from PIL library for live screen capture. 'bbox' specifies specific region (bbox= top,left,width,height). After that, we create a while loop to run the webcam/live screen. Then we read the image from live screen through 'captureScreen' function and subsequently, cap.read() permits to read webcam frontal view image. To increase the computing speed of the device, it's wise to resize the image into 1/4 th of its original size even though we retrieve the original size while displaying. later, we convert it to RGB.
+We can either initialize the capturing screen mode or webcam frontal view based on our preferance. We can initialize both by employing 2 webcams in our device as well. For this particular project, capturing screen mode is the suitable one. To grab frames from webcam frontal view, we develop a video capturing object in the beginning, and import ImageGrab from PIL library for capturing live screen. 'bbox' specifies specific region (bbox= top,left,width,height). After that, we create a while loop to run the webcam/live screen. Then we read the image from live screen through 'captureScreen' function and subsequently, cap.read() permits to read webcam frontal view image. To increase the computing speed of the device, it's wise to resize the image into 1/4 th of its original size even though we retrieve the original size while displaying. later, we convert it to RGB.
 
         Code for live screen: def captureScreen(bbox=(300,150,900+150,800+300)): 
                               capScreen = np.array(ImageGrab.grab(bbox))
@@ -80,4 +80,15 @@ We can either initialize the capturing screen mode or webcam frontal view based 
                                       success, img = cap.read()
                                       imgS = cv2.resize(img,(0,0),None,0.25,0.25)
                                       imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
+                                      
+6. Specify the target face and encode it
+
+Once we initialize the webcam/live screen, locating the face from the real time image (with 4 different measurements: top, bottom, left and right)
+becomes our priority that paves the way to identify known and unknown faces and to edncode them accurately.
+
+          Code: faceLocRealTime = face_recognition.face_locations(imgS) #loacate the face from the real time image 
+                encodeRealTime = face_recognition.face_encodings(imgS,faceLocRealTime) 
+                
+7.
+            
         
