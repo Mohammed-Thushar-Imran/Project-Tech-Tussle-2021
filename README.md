@@ -91,7 +91,7 @@ becomes our priority that paves the way to identify known and unknown faces and 
                 
 7. Find the mathes
 
-At this moment, we compare the encodings of the stored images in the database to the current frame (live screen) images to find the best match and represent the result by a new function called 'face_distance' which determines the similarities in terms of numbers; the lower the distance, the better the match. Besides, we create a loop that grab the encoding from 'encodeRealTime' into 'encodeFace' and location from 'faceLocRealTime' into 'faceLoc' and store them in the same loop.
+At this moment, we compare the encodings of the stored images in the database to the current frame (live screen) images to find the best match by employing liner SVM classifier and represent the result by a new function called 'face_distance' which determines the similarities in terms of numbers; the lower the distance, the better the match. Besides, we create a loop that grabs the encoding from 'encodeRealTime' into 'encodeFace' and location from 'faceLocRealTime' into 'faceLoc' and store them in the same loop.
 
           Code:  for encodeFace, faceLoc in zip(encodeRealTime,faceLocRealTime):  
                  matches = face_recognition.compare_faces(encodeListSavedImages,encodeFace)
@@ -99,6 +99,24 @@ At this moment, we compare the encodings of the stored images in the database to
                  print(faceDistance)
          
                  matchIndex = np.argmin(faceDistance) #losest distance represent the best match
+                 
+8. Label the identity within each face
+
+By this time, The system computed the lowest possible face distance and stored the data in matchIndex. Manipulating this data, we can label the known faces with their Names and Ids (faceDistance[matchIndex] < 0.60) and unknown faces with the text 'Unknown' otherwise at the same time. We also enclose the faces with separate rectangles using 4 different measurements of 'faceLocRealTime' as the rectangles coordinate and print the attendants identity right below each rectangle, but prior to that, we rescale the images into their original form.
+
+         Code:  if faceDistance[matchIndex] < 0.60:
+                name = classNames[matchIndex].upper()
+                markAttendance(name)
+                else:name = 'Unknown'
+                y1, x2, y2, x1 = faceLoc  # specifying the 4 different face location measurements within 4 variables
+                y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4 
+                cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
+                cv2.putText(img, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+
+           
+
+
                  
                 
             
