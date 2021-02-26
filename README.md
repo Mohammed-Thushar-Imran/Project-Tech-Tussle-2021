@@ -29,7 +29,7 @@ vi. os: This module acts as a bridge. It allows many fuctions to interact with t
 
 3. Import images and corresponding information
 
-We employ the os library which allows us to import all the images from our desired database folder 'Spring-2021/CSE161' at once. Moreover, cv2.imread() function is employed to read the image file. Later, we append the images from 'imgFrame' to the list 'images' and subsequently, we append the first element of each of the file name into a different list, namely 'classNames', right after splitting the text in order to terminate the file format (.jpeg) from appearing in the live capturing screen. Afterwards, we print the classnames to verify whether the file format has been deducted from the file name or not
+We employ the os library which allows us to import all the images from our desired database folder 'Spring-2021/CSE161' at once. Moreover, cv2.imread() function is employed to read the image file. Later, we append the stored images from 'imgFrame' to the list 'images' and subsequently, we append the first element of each of the file name into a different list, namely 'classNames', right after splitting the text in order to terminate the file format (.jpeg) from appearing in the live capturing screen. Afterwards, we print the classnames to verify whether the file format has been deducted from the file name or not
 
 
            Code: path= 'imageBasic'
@@ -60,4 +60,8 @@ We define a new function called 'faceEncodings' in order to find the encodings o
                  
                  encodeListSavedImages = faceEncodings(images)
                  print('Encoding operation of the saved images is completed')
+                 
+5. Initialize live capturing screen or webcam
+
+We can either initialize the capturing screen mode or webcam frontal view based on our preferance. We can initialize both by employing 2 webcams in our device. For this particular project, capturing screen mode is the suitable one. To grab frames from the webcam, we develop a video capturing object in the beginning. After that, we create a while loop to run the webcam
           
