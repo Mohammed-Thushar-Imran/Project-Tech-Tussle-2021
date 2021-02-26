@@ -102,7 +102,7 @@ At this moment, we compare the encodings of the stored images in the database to
                  
 8. Label the identity within each face
 
-By this time, the system computed the lowest possible value for 'faceDistance and stored the data in 'matchIndex'. By manipulating this data, we can label the known faces with their Names and Ids (faceDistance[matchIndex] < 0.60) and unknown faces with the text 'Unknown' otherwise at the same time. We also enclose the faces with separate rectangles using 4 different measurements of 'faceLocRealTime' as the rectangles coordinate and print the known and unknown attendants identity right below each rectangle, but prior to that, we rescale the images into their original form.
+By this time, the system computed the lowest possible value for 'faceDistance' and stored the data in 'matchIndex'. By manipulating this data, we can label the known faces with their Names and Ids (faceDistance[matchIndex] < 0.60) and unknown faces with the text 'Unknown' at the same time. We also enclose the faces with separate rectangles using 4 different measurements of 'faceLocRealTime' as the rectangles coordinate and print the known and unknown attendants identity right below each rectangle, but prior to that, we rescale the images into their original form.
 
          Code:  if faceDistance[matchIndex] < 0.60:
                 name = classNames[matchIndex].upper()
