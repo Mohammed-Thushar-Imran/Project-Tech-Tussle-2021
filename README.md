@@ -32,11 +32,11 @@ vi. os: This module acts as a bridge. It allows many fuctions to interact with t
 We employ the os library which allows us to import all the images from our desired database folder 'Spring-2021/CSE161' at once. Moreover, cv2.imread() function is employed to read the image file. Later, we append the stored images from 'imgFrame' to the list 'images' and subsequently, we append the first element of each of the file name into a different list, namely 'classNames', right after splitting the text in order to terminate the file format (.jpeg) from appearing in the live capturing screen. Afterwards, we print the classnames to verify whether the file format has been deducted from the file name or not
 
 
-           Code: path= 'imageBasic'
+           Code: path= 'Spring-2021/CSE161'
                  images= []
                  classNames= []
                  List = os.listdir(path)
-                 #print(List)
+                 print(List)
                  
                  for cl in List:
 
@@ -63,5 +63,21 @@ We define a new function called 'faceEncodings' in order to find the encodings o
                  
 5. Initialize live capturing screen or webcam
 
-We can either initialize the capturing screen mode or webcam frontal view based on our preferance. We can initialize both by employing 2 webcams in our device. For this particular project, capturing screen mode is the suitable one. To grab frames from the webcam, we develop a video capturing object in the beginning. After that, we create a while loop to run the webcam
-          
+We can either initialize the capturing screen mode or webcam frontal view based on our preferance. We can initialize both by employing 2 webcams in our device as well. For this particular project, capturing screen mode is the suitable one. To grab frames from the live screen, we develop a video capturing object in the beginning in case of webcam frontal view operation, and import ImageGrab from PIL library for live screen capture. 'bbox' specifies specific region (bbox= top,left,width,height). After that, we create a while loop to run the webcam/live screen. Then we read the image from live screen through 'captureScreen' function and subsequently, cap.read() permits to read webcam frontal view image. To increase the computing speed of the device, it's wise to resize the image into 1/4 th of its original size even though we retrieve the original size while displaying. later, we convert it to RGB.
+
+        Code for live screen: def captureScreen(bbox=(300,150,900+150,800+300)): 
+                              capScreen = np.array(ImageGrab.grab(bbox))
+                              capScreen = cv2.cvtColor(capScreen, cv2.COLOR_RGB2BGR)
+                              return capScreen
+                              
+                              while True:
+                              img = captureScreen()
+                              imgS = cv2.resize(img,(0,0),None,0.25,0.25)
+                              imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB) 
+                              
+        Code for webcam frontal view: cap = cv2.VideoCapture(0)
+                                      while True:
+                                      success, img = cap.read()
+                                      imgS = cv2.resize(img,(0,0),None,0.25,0.25)
+                                      imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
+        
