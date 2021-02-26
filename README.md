@@ -27,6 +27,21 @@ vi. os: This module acts as a bridge. It allows many fuctions to interact with t
 
 
 
-2. Importing images and corresponding information
+3. Importing images and corresponding information
 
-We employ the os library which allows to import all the images from our desi
+We employ the os library which allows us to import all the images from our desired database folder 'Spring-2021/CSE161' at once. Moreover, cv2.imread() function is employed to read the image file. Later, we append the images from 'imgFrame' to the list 'images' and subsequently, we append the first element of each of the file name into a different list, namely 'classNames', right after splitting the text in order to terminate the file format (.jpeg) from appearing in the live capturing screen. Afterwards, we print the classnames to verify whether the file format has been deducted from the file name or not
+
+
+           Code: path= 'imageBasic'
+                 images= []
+                 classNames= []
+                 List = os.listdir(path)
+                 #print(List)
+                 
+                 for cl in List:
+
+                 ImgFrame= cv2.imread(f'{path}/{cl}')
+                 images.append(ImgFrame)
+                 classNames.append(os.path.splitext(cl)[0])
+
+                 print(classNames) 
