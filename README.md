@@ -113,6 +113,49 @@ By this time, the system computed the lowest possible value for 'faceDistance' a
                 cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
                 cv2.rectangle(img, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
                 cv2.putText(img, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+               
+9. Mark the attendance in an excel sheet
+
+We generate the automated attendance code. We define a function that takes the image file name as its input argument at the beginning. Then we open an Attendance file which is in csv format. we import the date in (%Year-%Month-%day) format and insert the headings ("Identity","Status","Time") for three different attendance columns. Later we open the Attendance file again and read all the lines, and iterate through each line using a for loop afterwards. Next we can split using comma ‘,’. Lastly, we upload the sequence of name, status and enrollment time for every selected attendant in a differant line to the attendance list.  If the user in the camera already has an entry in the file, the system will not re-enter the user's information in the same file. On the other hand if the user is new, then the name of the user along with the enrollment time stamp and status will be stored. We can use the datetime class in the date time package to get the current time.
+
+
+          Code: def markAttendance(name):
+
+                with open('Attendance.csv','r+') as s:
+                tday = datetime.today().strftime('%Y-%m-%d')
+                s.write(f'Date:{tday}')
+                s.write(f'\n{"Identity"},{"Status"},{"Time"}')
+                s.close()
+                with open('Attendance.csv','r+') as f:
+                myDataList = f.readlines()
+
+                nameList = []
+
+                for line in myDataList:
+                entry = line.split(',')
+                nameList.append(entry[0])
+
+
+                if name not in nameList:
+                now = datetime.now()
+                dtString = now.strftime('%H:%M:%S')
+                f.writelines(f'\n{name},{"Present"},{dtString}')
+                
+10. View the webcam/live screen
+
+In order to observe the webcam frontal view/ live capturing screen in our device, we initiate 'cv2.imshow()' function.
+
+          Code: cv2.imshow('Webcam',img)
+                cv2.waitKey(1)
+                
+11. If anything unpleasant occurs in an attendant webcam, the controller can immediately turn the live capturing screen off just by clicking on the 'q' button for 10ms using cv2.waitkey() function.
+
+          Code: if cv2.waitKey(10) & 0xFF == ord ('q'):
+                break
+
+
+
+
 
            
 
