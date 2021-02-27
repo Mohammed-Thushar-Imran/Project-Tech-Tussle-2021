@@ -154,7 +154,9 @@ In order to observe the webcam frontal view/ live capturing screen in our device
                 break
 
 
+Bugs and Future work:
 
+One of the issues that arised while implementing the project is that if we try to cover the whole monitor screen just by incresing the aspect ratio, it will require a device with high computational power or it may slow down the process. When the image is feed to a pretrained neural network, it generates 128 measurements that are unique to that particular face. Besides, all these measurements can not be known as these are what the model learns by itself. The system had to perform subsequent scale up and scale down operation concerning the size of the images in order to boost the speed. 
 
 
            
