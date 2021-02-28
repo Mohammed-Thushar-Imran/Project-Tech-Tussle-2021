@@ -1,6 +1,6 @@
 1. Attendance management system using highly sophisticated facial recognition
 
-The prime objective of this project is to develop such an attendance system where the attendants attendance will be marked automatically when they turn their camera on during a live meeting. Their identity will be stored in an excel sheet in an arranged manner without any manual intervention.
+The prime objective of this project is to develop such an attendance system where the attendant's attendance will be marked automatically when they turn their camera on during a live meeting. Their identity will be stored in an excel sheet in an arranged manner without any manual intervention.
 
 2. Import the libraries
 
@@ -29,7 +29,7 @@ vi. os: This module acts as a bridge. It allows many fuctions to interact with t
 
 3. Import images and corresponding information
 
-We employ the os library which allows us to import all the images from our desired database folder 'Spring-2021/CSE161' at once. Moreover, cv2.imread() function is employed to read the image file. Later, we append the stored images from 'imgFrame' to the list 'images' and subsequently, we append the first element of each of the file name into a different list, namely 'classNames', right after splitting the text in order to terminate the file format (.jpeg) from appearing in the live capturing screen. Afterwards, we print the classnames to verify whether or not the file format has been deducted from the file name.
+We employ the os library which allows us to import all the images from our desired database folder 'Spring-2021(CSE161)' at once. Moreover, cv2.imread() function is employed to read the image file. Later, we append the stored images from 'imgFrame' to the list 'images' and subsequently, we append the first element of each of the file name into a different list, namely 'classNames', right after splitting the text in order to terminate the file format (.jpeg) from appearing in the live capturing screen. Afterwards, we print the classnames to verify whether or not the file format has been deducted from the file name.
 
 
            Code: path= 'Spring-2021/CSE161'
@@ -89,7 +89,7 @@ becomes our priority that paves the way to identify known and unknown faces and 
           Code: faceLocRealTime = face_recognition.face_locations(imgS)
                 encodeRealTime = face_recognition.face_encodings(imgS,faceLocRealTime) 
                 
-7. Find the mathes
+7. Find the matches
 
 At this moment, we compare the encodings of the stored images in the database to the current frame (live screen) images to find the best match by employing liner SVM classifier and represent the result by a new function called 'face_distance' which determines the similarities in terms of numbers; the lower the distance, the better the match. Besides, we create a loop that grabs the encoding from 'encodeRealTime' into 'encodeFace' and location from 'faceLocRealTime' into 'faceLoc' and store them in the same loop.
 
@@ -102,7 +102,7 @@ At this moment, we compare the encodings of the stored images in the database to
                  
 8. Enclose and Label the identity within each face
 
-By this time, the system computed the lowest possible value for 'faceDistance' and stored the data in 'matchIndex'. By manipulating this data, we can label the known faces with their Names and Ids (faceDistance[matchIndex] < 0.60) and unknown faces with the text 'Unknown' at the same time. We also enclose the faces with separate rectangles using 4 different measurements of 'faceLocRealTime' as the rectangles coordinate and print the known and unknown attendants identity right below each rectangle, but prior to that, we rescale the images into their original form.
+By this time, the system computed the lowest possible value for 'faceDistance' and stored the data in 'matchIndex'. By manipulating this data, we can label the known faces with their Names and Ids (faceDistance[matchIndex] < 0.50) and unknown faces with the text 'Unknown' at the same time. We also enclose the faces with separate rectangles using 4 different measurements of 'faceLocRealTime' as the rectangles coordinate and print the known and unknown attendants identity right below each rectangle, but prior to that, we rescale the images into their original form.
 
          Code:  if faceDistance[matchIndex] < 0.60:
                 name = classNames[matchIndex].upper()
@@ -156,9 +156,9 @@ In order to observe the webcam frontal view/ live capturing screen in our device
 
 Bugs and Future work:
 
-One of the issues that arised while implementing the project is that if we try to cover the whole monitor screen just by incresing the aspect ratio, it will require a device with high computational power or it may slow down the process. When the image is feed to a pretrained neural network, it generates 128 measurements that are unique to that particular face but all these measurements can not be known as these are what the model learns by itself. Moreover, the system had to perform an additional subsequent scale up and scale down operation concerning the size of the images in order to boost the speed. 
+One of the issues that arised while implementing the project is that if we try to cover the whole monitor screen just by incresing the aspect ratio, it will require a device with high computational power or it may slow down the process. Moreover, when the image is feed to a pretrained neural network, it generates 128 measurements that are unique to that particular face but all these measurements can not be known as these are what the model learns by itself. Moreover, the system had to perform an additional subsequent scale up and scale down operation concerning the size of the images in order to boost the speed. 
 
-To mention a far-reaching plan about this project is to develop an online meeting app equipped with facial_recognition or fingerprint based biometric sensor as a dedicated specification to mark the attendance of an online meeting. It has to be user friendly and easily accessible. 
+To mention a far-reaching plan about this project is to develop an online meeting app equipped with facial_recognition or fingerprint based biometric method as a dedicated specification to mark the attendance of an online meeting applicable for both educational institution's online class and official meeting. It has to be user friendly and easily accessible.
 
            
 
