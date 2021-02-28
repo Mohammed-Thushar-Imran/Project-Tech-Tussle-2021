@@ -148,7 +148,9 @@ In order to observe the webcam frontal view/ live capturing screen in our device
           Code: cv2.imshow('Webcam',img)
                 cv2.waitKey(1)
                 
-11. If anything unpleasant occurs in an attendant webcam, the controller can immediately turn the live capturing screen off just by clicking on the 'q' button for 10ms using cv2.waitkey() function.
+11. Turn off the live screen/webcam instantaneously
+
+If anything unpleasant occurs in an attendant webcam, the controller can immediately turn the live capturing screen off just by clicking on the 'q' button for 10ms using cv2.waitkey() function.
 
           Code: if cv2.waitKey(10) & 0xFF == ord ('q'):
                 break
@@ -156,7 +158,7 @@ In order to observe the webcam frontal view/ live capturing screen in our device
 
 Bugs and Future work:
 
-One of the issues that arised while implementing the project is that if we try to cover the whole monitor screen just by incresing the aspect ratio, it will require a device with high computational power or it may slow down the process. Moreover, when the image is feed to a pretrained neural network, it generates 128 measurements that are unique to that particular face but all these measurements can not be known as these are what the model learns by itself. Moreover, the system had to perform an additional subsequent scale up and scale down operation concerning the size of the images in order to boost the speed. 
+One of the issues that arised while implementing the project is that if we try to cover the whole monitor screen just by incresing the aspect ratio, it will require a device with high computational power or it may slow down the system's execution. Moreover, when the image is fed to a pretrained neural network, it generates 128 measurements that are unique to that particular face but all these measurements can not be known as these are what the model learns by itself. Moreover, the system had to perform an additional subsequent scale up and scale down operation concerning the size of the images in order to boost the speed. 
 
 To mention a far-reaching plan about this project is to develop an online meeting app equipped with facial_recognition or fingerprint based biometric method as a dedicated specification to mark the attendance of an online meeting which will be applicable for both educational institution's online class and official meeting. It has to be user friendly and easily accessible.
 
