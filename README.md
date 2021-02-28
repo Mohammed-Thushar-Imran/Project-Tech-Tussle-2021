@@ -158,7 +158,7 @@ Bugs and Future work:
 
 One of the issues that arised while implementing the project is that if we try to cover the whole monitor screen just by incresing the aspect ratio, it will require a device with high computational power or it may slow down the process. Moreover, when the image is feed to a pretrained neural network, it generates 128 measurements that are unique to that particular face but all these measurements can not be known as these are what the model learns by itself. Moreover, the system had to perform an additional subsequent scale up and scale down operation concerning the size of the images in order to boost the speed. 
 
-To mention a far-reaching plan about this project is to develop an online meeting app equipped with facial_recognition or fingerprint based biometric method as a dedicated specification to mark the attendance of an online meeting applicable for both educational institution's online class and official meeting. It has to be user friendly and easily accessible.
+To mention a far-reaching plan about this project is to develop an online meeting app equipped with facial_recognition or fingerprint based biometric method as a dedicated specification to mark the attendance of an online meeting which will be applicable for both educational institution's online class and official meeting. It has to be user friendly and easily accessible.
 
            
 
